@@ -3,7 +3,7 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import { FaLock, FaMoon, FaSun } from 'react-icons/fa';
 import Button from '../../button/button';
 import resetPasswordIllustration from '../../../assets/auth/reset-password.svg';
-import { API_ENDPOINTS, fetchWithAuth } from '../../../utils/api';
+import { API_ENDPOINTS, fetchApi } from '../../../utils/api';
 import { toast } from 'react-toastify';
 import './ResetPassword.css';
 
@@ -44,11 +44,11 @@ export default function ResetPassword({ isDarkMode, toggleTheme }) {
 
         setIsLoading(true);
         try {
-            await fetchWithAuth(API_ENDPOINTS.RESET_PASSWORD, {
+            await fetchApi(`${API_ENDPOINTS.RESET_PASSWORD}`, {
                 method: 'POST',
                 body: JSON.stringify({
-                    email,
-                    token,
+                    email: searchParams.get('email'),
+                    token: searchParams.get('token'),
                     newPassword: formData.newPassword,
                     confirmPassword: formData.confirmPassword
                 })
@@ -57,6 +57,7 @@ export default function ResetPassword({ isDarkMode, toggleTheme }) {
             toast.success('Password reset successful');
             navigate('/log-in');
         } catch (error) {
+            console.error('Error:', error);
             toast.error(error.message || 'Failed to reset password');
         } finally {
             setIsLoading(false);

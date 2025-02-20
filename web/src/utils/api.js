@@ -50,9 +50,24 @@ export const fetchApi = async (endpoint, options = {}) => {
     }
 };
 
+// List of endpoints that don't require authentication
+const PUBLIC_ENDPOINTS = [
+    API_ENDPOINTS.LOGIN,
+    API_ENDPOINTS.REGISTER,
+    API_ENDPOINTS.FORGOT_PASSWORD,
+    API_ENDPOINTS.RESET_PASSWORD,
+    API_ENDPOINTS.VERIFY_OTP,
+    API_ENDPOINTS.RESEND_OTP
+];
+
 export const fetchWithAuth = async (endpoint, options = {}) => {
+    // Check if endpoint is public
+    const isPublicEndpoint = PUBLIC_ENDPOINTS.some(publicEndpoint => 
+        endpoint.includes(publicEndpoint)
+    );
+
     const token = localStorage.getItem('token');
-    if (!token) {
+    if (!token && !isPublicEndpoint) {
         throw new Error('No authentication token found');
     }
 
@@ -60,7 +75,7 @@ export const fetchWithAuth = async (endpoint, options = {}) => {
         ...options,
         headers: {
             ...options.headers,
-            'Authorization': `Bearer ${token}`
+            ...(token && !isPublicEndpoint && { 'Authorization': `Bearer ${token}` })
         }
     });
 };

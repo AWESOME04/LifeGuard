@@ -128,7 +128,7 @@ export default function LogIn({ isDarkMode, toggleTheme }) {
                             isLoading={isLoading}
                         />
                     </form>
-                    <p className="already">Don't have an account? <Link to="/" className="link">Sign Up</Link></p>
+                    <p className="already">Don't have an account? <Link to="/sign-up" className="link">Sign Up</Link></p>
                 </div>
             </div>
         </div>

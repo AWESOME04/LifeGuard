@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { FaEnvelope, FaMoon, FaSun } from 'react-icons/fa';
 import Button from '../../button/button';
 import forgotPasswordIllustration from '../../../assets/auth/forgot-password.svg';
-import { API_ENDPOINTS, fetchWithAuth } from '../../../utils/api';
+import { API_ENDPOINTS, fetchApi } from '../../../utils/api';
 import { toast } from 'react-toastify';
 import './ForgotPassword.css';
 
@@ -15,7 +15,7 @@ export default function ForgotPassword({ isDarkMode, toggleTheme }) {
         e.preventDefault();
         setIsLoading(true);
         try {
-            await fetchWithAuth(API_ENDPOINTS.FORGOT_PASSWORD, {
+            await fetchApi(API_ENDPOINTS.FORGOT_PASSWORD, {
                 method: 'POST',
                 body: JSON.stringify({ email })
             });
