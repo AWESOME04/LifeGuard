@@ -97,7 +97,7 @@ function Dashboard({ isDarkMode }) {
             });
         } catch (error) {
             console.error('Error fetching quote:', error);
-            toast.error('Failed to fetch quote');
+            // toast.error('Failed to fetch quote');
         } finally {
             setQuotesLoading(false);
         }

@@ -11,16 +11,16 @@ export const generateHealthReport = (userData) => ({
       max: "36.8°C",
       status: "Normal"
     },
-    bloodPressure: {
-      average: "120/80 mmHg",
-      min: "115/75 mmHg",
-      max: "125/85 mmHg",
+    pressure: {
+      average: "1000hPa",
+      min: "500hPa",
+      max: "1500hPa",
       status: "Normal"
     },
-    heartRate: {
-      average: "72 bpm",
-      min: "65 bpm",
-      max: "80 bpm",
+    humidity: {
+      average: "50%",
+      min: "45%",
+      max: "55%",
       status: "Normal"
     },
     activityLevel: {

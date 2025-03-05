@@ -1,14 +1,12 @@
 import React, { useRef, useEffect } from 'react';
-import { FaTimes, FaDownload, FaFileCsv } from 'react-icons/fa';
 import { 
-  FaTemperatureHigh, 
-  FaHeartbeat, 
-  FaHeart, 
+  FaTemperatureHigh,  
   FaWalking 
 } from 'react-icons/fa';
-
-import './HealthReportModal.css';
+import { WiHumidity, WiBarometer } from "react-icons/wi";
+import { FaTimes, FaDownload, FaFileCsv } from 'react-icons/fa';
 import { generateHealthReport } from '../../data/health-report-data';
+import './HealthReportModal.css';
 
 export default function HealthReportModal({ isOpen, onClose, userData, isDarkMode }) {
   if (!isOpen) return null;
@@ -17,8 +15,8 @@ export default function HealthReportModal({ isOpen, onClose, userData, isDarkMod
 
   const iconMapping = {
     temperature: <FaTemperatureHigh size={32}/>,
-    bloodPressure: <FaHeartbeat size={32} />,
-    heartRate: <FaHeart size={32}/>,
+    humidity: <WiHumidity size={32} />,
+    pressure: <WiBarometer size={42} />,
     activityLevel: <FaWalking size={32}/>
   };
 
